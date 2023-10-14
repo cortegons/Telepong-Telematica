@@ -3,7 +3,7 @@ import java.net.*;
 
 public class PongClient {
     public static void main(String[] args) {
-        String serverIP = "52.14.108.99"; // Cambia esto a la dirección IP del servidor en la nube
+        String serverIP = "13.58.181.109"; // Cambia esto a la dirección IP del servidor en la nube
         int serverPort = 8080;
 
         try {
