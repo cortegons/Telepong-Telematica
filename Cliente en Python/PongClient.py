@@ -1,6 +1,6 @@
 import socket
 
-server_ip = "52.14.108.99"  # Cambia esto a la dirección IP del servidor en la nube
+server_ip = "13.58.181.109"  # Cambia esto a la dirección IP del servidor en la nube
 server_port = 8080
 
 try:
