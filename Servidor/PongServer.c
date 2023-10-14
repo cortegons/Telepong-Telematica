@@ -6,6 +6,7 @@
 #include <pthread.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <fcntl.h>
 
 #define PORT 8080
 #define MAX_CLIENTS 10
@@ -18,6 +19,7 @@ struct Player {
     int socket;
     char username[50];
     int score;
+    int best_score; // Para almacenar la mejor marca del jugador
     int paddle_position;
     int lives;
     struct Game* game; // Puntero al juego
@@ -63,12 +65,12 @@ void handle_paddle_collision(struct Player* player, struct Ball* ball) {
     ball->y_velocity = new_y_velocity;
 }
 
-// Agrega una función para enviar el estado del juego a los jugadores
+// Función para enviar el estado del juego a los jugadores (implementación requerida)
 void send_game_state(struct Game* game) {
     // Implementa la lógica para enviar el estado del juego a los jugadores aquí
 }
 
-// Agrega una función para procesar los mensajes del cliente
+// Función para procesar los mensajes del cliente (implementación requerida)
 void process_client_message(struct Player* player, const char* message) {
     // Implementa la lógica para procesar los mensajes del cliente aquí
 }
@@ -91,6 +93,32 @@ void update_game_state(struct Game* game) {
 
     // Envía el estado del juego a los jugadores
     send_game_state(game);
+}
+
+// Función para gestionar el registro y almacenamiento de la información del jugador
+void manage_player_info(struct Player* player) {
+    char filename[256];
+    snprintf(filename, sizeof(filename), "%s.txt", player->username);
+    FILE* file = fopen(filename, "a+");
+
+    if (file == NULL) {
+        perror("Error al abrir el archivo del jugador");
+        return;
+    }
+
+    int previous_best_score = 0;
+    fscanf(file, "%d", &previous_best_score);
+
+    if (player->score > previous_best_score) {
+        // Actualiza la mejor marca en el archivo
+        fseek(file, 0, SEEK_SET);
+        fprintf(file, "%d", player->score);
+        player->best_score = player->score;
+    } else {
+        player->best_score = previous_best_score;
+    }
+
+    fclose(file);
 }
 
 // Función para manejar la comunicación con un cliente
