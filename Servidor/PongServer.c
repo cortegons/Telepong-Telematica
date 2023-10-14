@@ -162,7 +162,25 @@ int main() {
     socklen_t client_addr_len = sizeof(client_addr);
 
     // Configura el servidor y el bucle principal (similar a tu código existente)
-    // ...
+    server_socket = socket(AF_INET, SOCK_STREAM, 0);
+    if (server_socket == -1) {
+        perror("Error al crear el socket del servidor");
+        exit(1);
+    }
+
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = INADDR_ANY;
+    server_addr.sin_port = htons(PORT);
+
+    if (bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr)) == -1) {
+        perror("Error al vincular el socket del servidor");
+        exit(1);
+    }
+
+    if (listen(server_socket, MAX_CLIENTS) == -1) {
+        perror("Error al escuchar conexiones entrantes");
+        exit(1);
+    }
 
     while (1) {
         // Acepta conexiones entrantes y maneja a los clientes en hilos
