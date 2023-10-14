@@ -12,4 +12,7 @@ jugadores al tiempo en diferentes salas, haciendo uso de sockets que permitan la
 
 # Conclusiones
 Los sockets son una tecnología muy utilizada y muy útil a la hora de realizar conexiones donde se esperan peticiones y respuestas a tiempo real, como por ejemplo videojuegos o chats en vivo.
+Nos permiten un muyu útil intercambio de datos entre diferentes canales y redes.
 # Referencias
+https://www.youtube.com/watch?v=GFTsU_XRXEg
+https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html
