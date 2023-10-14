@@ -1,11 +1,7 @@
 import socket
 
- 
-
-server_ip = "127.0.0.1"  # Cambia esto a la dirección IP del servidor en la nube
+server_ip = "52.14.108.99"  # Cambia esto a la dirección IP del servidor en la nube
 server_port = 8080
-
- 
 
 try:
     # Crear un socket de cliente y conectar al servidor
@@ -13,25 +9,20 @@ try:
     client_socket.connect((server_ip, server_port))
     print("Conectado al servidor Pong.")
 
- 
-
     # Lógica de comunicación con el servidor
     while True:
         # Leer entrada del usuario
         message = input("Ingrese un mensaje: ")
 
- 
+        if message.startswith("BEST_SCORE:"):
+            print("Mejor puntuación: " + message[11:])
+        else:
+            # Enviar el mensaje al servidor
+            client_socket.send(message.encode())
 
-        # Enviar el mensaje al servidor
-        client_socket.send(message.encode())
-
- 
-
-        # Recibir respuesta del servidor
-        response = client_socket.recv(1024).decode()
-        print("Respuesta del servidor:", response)
-
- 
+            # Recibir respuesta del servidor
+            response = client_socket.recv(1024).decode()
+            print("Respuesta del servidor:", response)
 
 except ConnectionRefusedError:
     print("No se pudo conectar al servidor. Asegúrate de que el servidor esté en ejecución.")
