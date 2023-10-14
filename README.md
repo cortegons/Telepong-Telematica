@@ -12,6 +12,7 @@ jugadores al tiempo en diferentes salas, haciendo uso de sockets que permitan la
 
 Para el desarrollo del cliente se uso un código escrito en C y ejecutado sobre la instancia en AWS. Este código tiene toda la configuración del servidor, la actualización del juego en tiempo real y la verificación de las coliciones de la pelota como la dirección en la que esta saldra.
 
+Mientras que el cliente se desarrollo en Java y este lo que hace es establecer la comunicación con el servidor. Enviar las jugadas de cada uno de los usuarios al servidor y la validación de estos mismos.
 
 # Conclusiones
 Los sockets son una tecnología muy utilizada y muy útil a la hora de realizar conexiones donde se esperan peticiones y respuestas a tiempo real, como por ejemplo videojuegos o chats en vivo.
