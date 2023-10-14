@@ -10,7 +10,7 @@ jugadores al tiempo en diferentes salas, haciendo uso de sockets que permitan la
 
 # Desarrollo
 
-Para el desarrollo del cliente se uso un código escrito en C y ejecutado sobre la instancia en AWS. Este código tiene toda la configuración del servidor, la actualización del juego en tiempo real y la verificación de las coliciones de la pelota como la dirección en la que esta saldra.
+Para el desarrollo del servidor se uso un código escrito en C y ejecutado sobre la instancia en AWS. Este código tiene toda la configuración del servidor, la actualización del juego en tiempo real y la verificación de las colisiones de la pelota como la dirección en la que esta saldra. En la parte del servidor se realizan las estructuras como lo son el juego, la bola y los jugadores. Se envía y recibe información de los puntajes y se calculan las velocidades y colisiones que da la bola.
 
 Mientras que el cliente se desarrollo en Java y este lo que hace es establecer la comunicación con el servidor mediante la creación del debido socket. Enviar las jugadas de cada uno de los usuarios al servidor y la validación de estos mismos.
 
